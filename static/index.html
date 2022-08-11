@@ -1,0 +1,23 @@
+<h1>Hello world</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+  integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<form>
+  <input />
+  <button type="submit">genrate</button>
+</form>
+
+<img />
+
+<script>
+  const form = document.querySelector('form')
+  const img = document.querySelector('img')
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    const text = form.querySelector('input').value
+
+    axios.post('/api', { text }).then((res) => console.dir(res)).catch(err => console.log({ err }))
+  })
+</script>
