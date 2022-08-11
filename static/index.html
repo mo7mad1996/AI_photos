@@ -1,24 +1,91 @@
-<h1>Hello world</h1>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
-  integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- <script src="https://cdnjs.deepai.org/deepai.min.js"></script> -->
-<form>
-  <input />
-  <button type="submit">genrate</button>
-</form>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
-<img />
+  <!-- axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+    integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script>
-  const form = document.querySelector('form')
-  const img = document.querySelector('img')
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault()
-    const text = form.querySelector('input').value
+  <style>
+    #loader,
+    button {
+      display: none;
+    }
 
-    axios.post('/api', { text }).then((res) => console.dir(res)).catch(err => console.log({ err }))
-  })
-</script>
+    #loader.active,
+    button.active {
+      display: block;
+    }
+
+
+    svg path,
+    svg rect {
+      fill: #FF6700;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <input />
+    <button type="submit" class="active">genrate</button>
+  </form>
+  <div>
+
+
+    <div class="loader loader--style5" title="4" id="loader">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;"
+        xml:space="preserve">
+        <rect x="0" y="0" width="4" height="10" fill="#333">
+          <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0"
+            begin="0" dur="0.6s" repeatCount="indefinite" />
+        </rect>
+        <rect x="10" y="0" width="4" height="10" fill="#333">
+          <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0"
+            begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+        </rect>
+        <rect x="20" y="0" width="4" height="10" fill="#333">
+          <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0"
+            begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+        </rect>
+      </svg>
+    </div>
+  </div>
+
+  <img />
+
+  <script>
+    const form = document.querySelector('form')
+    const img = document.querySelector('img')
+    const btn = document.querySelector('button')
+    const loading = document.getElementById('loader')
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault()
+
+      loading.classList.add('active')
+      btn.classList.remove('active')
+
+      const text = form.querySelector('input').value
+
+      axios.post('/api', { text }).then((res) => {
+        img.src = res.data.output_url
+      }).catch(err => console.log(err))
+        .finally(_ => {
+          loading.classList.remove('active')
+          btn.classList.add('active')
+        })
+    })
+  </script>
+
+</body>
+
+</html>

@@ -28,10 +28,10 @@ app.post('/api', async (req, res) => {
 
   deepai
     .callStandardApi("text2img", {
-      text: "car",
+      text: req.body.text,
     })
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+    .then(data => res.json(data))
+    .catch(err => res.status(401).json(err))
 
 })
 app.listen(process.env.PORT || 3000)
