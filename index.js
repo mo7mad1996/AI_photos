@@ -7,10 +7,6 @@ const deepai = require('deepai'); // OR include deepai.min.js as a script tag in
 deepai.setApiKey(api_key);
 
 
-const fs = require('fs');
-
-
-
 
 const express = require('express')
 const app = express()

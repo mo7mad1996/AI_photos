@@ -12,34 +12,18 @@
     integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <link rel="stylesheet" href="./style.css">
 
-  <style>
-    #loader,
-    button {
-      display: none;
-    }
-
-    #loader.active,
-    button.active {
-      display: block;
-    }
-
-
-    svg path,
-    svg rect {
-      fill: #FF6700;
-    }
-  </style>
 </head>
 
 <body>
   <form>
-    <input />
+    <input placeholder="what are you thinking?..." />
     <button type="submit" class="active">genrate</button>
   </form>
-  <div>
 
 
+  <div class="img-container">
     <div class="loader loader--style5" title="4" id="loader">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;"
@@ -58,9 +42,9 @@
         </rect>
       </svg>
     </div>
-  </div>
 
-  <img />
+    <img />
+  </div>
 
   <script>
     const form = document.querySelector('form')
@@ -68,8 +52,14 @@
     const btn = document.querySelector('button')
     const loading = document.getElementById('loader')
 
+    const img_container = document.querySelector('.img-container')
+
+
+    img_container.onanimationend = _ => img_container.classList.remove('anmated')
+
     form.addEventListener('submit', async e => {
       e.preventDefault()
+      img.classList.remove('active')
 
       loading.classList.add('active')
       btn.classList.remove('active')
@@ -78,6 +68,8 @@
 
       axios.post('/api', { text }).then((res) => {
         img.src = res.data.output_url
+        img.classList.add('active')
+        img_container.classList.add('anmated')
       }).catch(err => console.log(err))
         .finally(_ => {
           loading.classList.remove('active')
