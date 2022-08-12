@@ -6,8 +6,6 @@ const deepai = require('deepai'); // OR include deepai.min.js as a script tag in
 
 deepai.setApiKey(api_key);
 
-
-
 const express = require('express')
 const app = express()
 app.use(express.static('static'))
@@ -27,7 +25,10 @@ app.post('/api', async (req, res) => {
       text: req.body.text,
     })
     .then(data => res.json(data))
-    .catch(err => res.status(401).json(err))
+    .catch(err => {
+      console.log(err)
+      res.status(406).json(err)
+    })
 
 })
 app.listen(process.env.PORT || 3000)
