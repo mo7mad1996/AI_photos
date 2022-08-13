@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "deepai": "^1.0.21",
     "body-parser": "^1.20.0",
+    "deepai": "^1.0.21",
     "express": "^4.18.1"
   }
 }

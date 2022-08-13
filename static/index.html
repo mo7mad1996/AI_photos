@@ -46,7 +46,9 @@
     <img />
   </div>
 
-  <div class="alert"></div>
+  <div class="alert">
+    Something went wrong, Check the text and try again later
+  </div>
 
   <script>
     const form = document.querySelector('form')
@@ -56,12 +58,16 @@
 
     const img_container = document.querySelector('.img-container')
 
+    const alert = document.querySelector('.alert')
+
 
     img_container.onanimationend = _ => img_container.classList.remove('anmated')
 
     form.addEventListener('submit', async e => {
       e.preventDefault()
       img.classList.remove('active')
+
+      alert.classList.remove('active')
 
       loading.classList.add('active')
       btn.classList.remove('active')
@@ -72,7 +78,10 @@
         img.src = res.data.output_url
         img.classList.add('active')
         img_container.classList.add('anmated')
-      }).catch(err => console.log(err))
+      })
+        .catch(err => {
+          alert.classList.add('active')
+        })
         .finally(_ => {
           loading.classList.remove('active')
           btn.classList.add('active')
