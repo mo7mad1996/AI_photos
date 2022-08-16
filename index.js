@@ -1,14 +1,12 @@
-const api_key = 'b8ef7571-4b05-44be-82fb-a1f189faa691'
-// const api_key = '53214894-1872-4441-a15d-f599eaf3862d'
-
-
-
+const express = require('express')
 const bodyParser = require('body-parser');
 const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
 
-deepai.setApiKey(api_key);
+require('dotenv').config()
 
-const express = require('express')
+// const api_key = 'b8ef7571-4b05-44be-82fb-a1f189faa691' // deepai key
+deepai.setApiKey(process.env.deepai_key);
+
 const app = express()
 app.use(express.static('static'))
 
@@ -34,3 +32,23 @@ app.post('/api', async (req, res) => {
 
 })
 app.listen(process.env.PORT || 3000)
+
+const axios = require('axios')
+
+// axios.post(
+//     'https://api.replicate.com/v1/predictions', // host URL
+//     {
+//       // data
+//       "version": "5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa",
+//       "input": {
+//         "text": "Alice"
+//       }
+//     }, {
+//       // request headers
+//       Headers: {
+//         'Content-Type': 'application/json',
+//         "Authorization": `Token ${process.env.replicate_token}`
+//       }
+//     })
+//   .then(res => console.log(res))
+//   .catch(err => console.log(err))
