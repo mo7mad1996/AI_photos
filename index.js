@@ -1,10 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser');
-const deepai = require('deepai'); // OR include deepai.min.js as a script tag in your HTML
+const deepai = require('deepai');
 
 require('dotenv').config()
 
-// const api_key = 'b8ef7571-4b05-44be-82fb-a1f189faa691' // deepai key
 deepai.setApiKey(process.env.deepai_key);
 
 const app = express()
@@ -33,7 +32,7 @@ app.post('/api', async (req, res) => {
 })
 app.listen(process.env.PORT || 3000)
 
-const axios = require('axios')
+// const axios = require('axios')
 
 // axios.post(
 //     'https://api.replicate.com/v1/predictions', // host URL
