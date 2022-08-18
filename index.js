@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
+app.get('/api', async (req, res) => res.end(process.env.deepai_key))
 app.post('/api', async (req, res) => {
 
   deepai
@@ -25,8 +26,8 @@ app.post('/api', async (req, res) => {
     })
     .then(data => res.json(data))
     .catch(err => {
-      console.log(err)
-      res.status(406).json(err)
+      console.log(err.response)
+      res.status(err.response.status).json(err)
     })
 
 })
