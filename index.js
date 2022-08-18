@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
-app.get('/api', async (req, res) => res.end(process.env.deepai_key))
 app.post('/api', async (req, res) => {
 
   deepai

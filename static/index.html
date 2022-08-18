@@ -47,7 +47,6 @@
     <img />
   </div>
 
-  <button onclick="get()" class="active">get</button>
   <div class="alert">
     Something went wrong, Check the text and try again later
   </div>
@@ -62,9 +61,6 @@
 
     const alert = document.querySelector('.alert')
 
-    function get() {
-      axios.get('/api').then(res => console.log(res.data))
-    }
     img_container.onanimationend = _ => img_container.classList.remove('anmated')
 
     form.addEventListener('submit', async e => {
