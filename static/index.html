@@ -47,6 +47,8 @@
     <img />
   </div>
 
+  <div id="img-list"></div>
+
   <div class="alert">
     Something went wrong, Check the text and try again later
   </div>
@@ -91,6 +93,18 @@
     })
   </script>
 
+
+  <button id="btn-test">test</button>
+
+
+  <script>
+
+    const btnTest = document.getElementById('btn-test')
+
+    btnTest.onclick = function () {
+      axios.get('/test').then(res => console.log(res)).catch(err => console.log(err))
+    }
+  </script>
 </body>
 
 </html>

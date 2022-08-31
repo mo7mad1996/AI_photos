@@ -30,24 +30,33 @@ app.post('/api', async (req, res) => {
     })
 
 })
+
 app.listen(process.env.PORT || 3000)
 
-// const axios = require('axios')
+const axios = require('axios')
 
-// axios.post(
-//     'https://api.replicate.com/v1/predictions', // host URL
-//     {
-//       // data
-//       "version": "5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa",
-//       "input": {
-//         "text": "Alice"
-//       }
-//     }, {
-//       // request headers
-//       Headers: {
-//         'Content-Type': 'application/json',
-//         "Authorization": `Token ${process.env.replicate_token}`
-//       }
-//     })
-//   .then(res => console.log(res))
-//   .catch(err => console.log(err))
+app.get('/tests', (req, res) => {
+
+
+  axios.post(
+      'https://api.replicate.com/v1/predictions', // host URL
+      {
+        // data
+        "version": "5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa",
+        "input": {
+          "text": "Cat"
+        }
+      }, {
+        // request headers
+        Headers: {
+          'Content-Type': 'application/json',
+          "Authorization": 'Token dfec5aa4019b735f9c6a0b2c9bfbdee97bb0cbda'
+        }
+      })
+    .then(res => res.json({
+      res
+    }))
+    .catch(err => res.json({
+      err
+    }))
+})
