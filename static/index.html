@@ -94,32 +94,6 @@
   </script>
 
 
-  <button id="btn-test" class=active>test</button>
-
-
-  <script>
-
-    const btnTest = document.getElementById('btn-test')
-
-    btnTest.onclick = function () {
-      axios.get('/test').then(res => console.log(res)).catch(err => console.log(err))
-
-      fetch('https://api.replicate.com/v1/predictions', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Token dfec5aa4019b735f9c6a0b2c9bfbdee97bb0cbda',
-          'Content-Type': 'application/json'
-        },
-        // body: '{"version": "5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa", "input": {"text": "Alice"}}',
-        body: JSON.stringify({
-          'version': '5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa',
-          'input': {
-            'text': 'cat'
-          }
-        })
-      }).then(res => res.json()).then(data => console.log(data)).catch(err => console.log({ err }))
-    }
-  </script>
 </body>
 
 </html>
