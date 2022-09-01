@@ -35,7 +35,7 @@ app.listen(process.env.PORT || 3000)
 
 const axios = require('axios')
 
-app.get('/tests', (req, res) => {
+app.get('/test', (req, res) => {
 
 
   axios.post(
