@@ -57,6 +57,7 @@
   <script>
     const img = document.querySelector('img')
     const form = document.querySelector('form')
+    const input = form.querySelector('input')
     const btn = document.querySelector('button')
     const alert = document.querySelector('.alert')
     const loading = document.getElementById('loader')
@@ -74,17 +75,20 @@
       loading.classList.add('active')
       btn.classList.remove('active')
 
-      const text = form.querySelector('input').value
+      const text = input.value
 
       axios.post('/api', { text }).then((res) => {
-        img.src = res.data.output_url
-        img.onloadend = _ => {
-          img.classList.add('active')
-          img_container.classList.add('anmated')
+        const URL = res.data.output_url
+        img.src = URL
+        input.value = URL
+        form.
+          img.onloadend = _ => {
+            img.classList.add('active')
+            img_container.classList.add('anmated')
 
-          download.classList.add('active')
-          download.setAttribute('href', res.data.output_url)
-        }
+            download.classList.add('active')
+            download.setAttribute('href', URL)
+          }
       })
         .catch(err => {
           alert.classList.add('active')
