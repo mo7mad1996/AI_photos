@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const deepai = require('deepai');
 
+
 require('dotenv').config()
 
 deepai.setApiKey(process.env.deepai_key);
@@ -21,7 +22,7 @@ app.post('/api', async (req, res) => {
 
   deepai
     .callStandardApi("text2img", {
-      text: req.body.text,
+      text: req.body.text + ' oiled drawing',
     })
     .then(data => res.json(data))
     .catch(err => {
