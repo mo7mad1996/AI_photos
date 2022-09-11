@@ -47,8 +47,6 @@
 
     <img />
   </div>
-  <a download id="download">Download</a>
-
 
   <div class="alert">
     Something went wrong, Check the text and try again later
@@ -61,7 +59,6 @@
     const btn = document.querySelector('button')
     const alert = document.querySelector('.alert')
     const loading = document.getElementById('loader')
-    const download = document.getElementById('download')
     const img_container = document.querySelector('.img-container')
 
     img_container.onanimationend = _ => img_container.classList.remove('anmated')
@@ -79,15 +76,13 @@
 
       axios.post('/api', { text }).then((res) => {
         const URL = res.data.output_url
+
         img.src = URL
-        input.value = URL
+
         form.
           img.onloadend = _ => {
             img.classList.add('active')
             img_container.classList.add('anmated')
-
-            download.classList.add('active')
-            download.setAttribute('href', URL)
           }
       })
         .catch(err => {
