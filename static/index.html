@@ -44,24 +44,24 @@
     </div>
 
 
+
     <img />
   </div>
+  <a download id="download">Download</a>
 
-  <div id="img-list"></div>
 
   <div class="alert">
     Something went wrong, Check the text and try again later
   </div>
 
   <script>
-    const form = document.querySelector('form')
     const img = document.querySelector('img')
+    const form = document.querySelector('form')
     const btn = document.querySelector('button')
-    const loading = document.getElementById('loader')
-
-    const img_container = document.querySelector('.img-container')
-
     const alert = document.querySelector('.alert')
+    const loading = document.getElementById('loader')
+    const download = document.getElementById('download')
+    const img_container = document.querySelector('.img-container')
 
     img_container.onanimationend = _ => img_container.classList.remove('anmated')
 
@@ -81,6 +81,9 @@
         img.onloadend = _ => {
           img.classList.add('active')
           img_container.classList.add('anmated')
+
+          download.classList.add('active')
+          download.setAttribute('href', res.data.output_url)
         }
       })
         .catch(err => {

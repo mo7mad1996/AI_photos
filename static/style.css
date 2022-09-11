@@ -134,3 +134,18 @@ form [type="submit"] {
 .alert.active {
   bottom: 1em;
 }
+
+#download {
+  color: white;
+  background: #4928f0;
+  padding: 4px 20px;
+  margin: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: none;
+}
+
+#download.active {
+  display: inline-block;
+}
