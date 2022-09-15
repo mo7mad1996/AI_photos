@@ -25,6 +25,13 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
@@ -326,19 +333,13 @@
         <div class="row justify-content-center bg-image mx-0 mb-5">
             <div class="col-lg-6 py-5">
                 <div class="bg-white p-5 my-5">
-                    <h1 class="text-center mb-4">30% Off For New Students</h1>
-                    <form>
+                    <h1 class="text-center mb-4">Try it now!!</h1>
+                    <form id="form">
                         <div class="form-row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name"
-                                        style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email"
-                                        style="padding: 30px 20px;">
+                                    <input type="text" class="form-control bg-light border-0" name="text"
+                                        placeholder="What's in your mind" style="padding: 30px 20px;">
                                 </div>
                             </div>
                         </div>
@@ -354,11 +355,62 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block" type="submit" style="height: 60px;">Sign Up
+                                <button class="btn btn-primary btn-block" type="submit" name="submit"
+                                    style="height: 60px;">Genrate
                                     Now</button>
                             </div>
                         </div>
                     </form>
+
+
+                    <!-- loader -->
+                    <div class="loader loader--style1 d-none" id="loader" title="loading">
+                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px"
+                            viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve"
+                            class="m-auto d-block">
+                            <path opacity="0.2" fill="#000"
+                                d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                        s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                        c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                            <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                        C22.32,8.481,24.301,9.057,26.013,10.047z">
+                                <animateTransform attributeType="xml" attributeName="transform" type="rotate"
+                                    from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                            </path>
+                        </svg>
+                    </div>
+
+
+
+                    <!-- img here -->
+                    <img class="img-fluid d-none" id="preview" src="img/courses-6.jpg" alt="">
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </symbol>
+                        <symbol id="info-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        </symbol>
+                        <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </symbol>
+                    </svg>
+
+
+                    <div class="alert alert-danger text-center d-none" role="alert" id="alert">
+                        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:" height="16px" width="16px">
+                            <use xlink:href="#exclamation-triangle-fill" />
+                        </svg>
+
+                        Some thing was worning, Please check your text and try again later!
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -657,6 +709,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!--  -->
+    <script src="./js/index.js"></script>
 </body>
 
 </html>

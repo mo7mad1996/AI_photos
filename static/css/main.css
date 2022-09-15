@@ -1,0 +1,8 @@
+*:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+}
+
+.loader svg path {
+  fill: #2d76de
+}
