@@ -6,3 +6,7 @@
 .loader svg path {
   fill: #2d76de
 }
+
+html {
+  scroll-behavior: smooth;
+}
